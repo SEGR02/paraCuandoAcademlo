@@ -16,7 +16,7 @@ module.exports = {
       );
       const adminRole = await rolesService.findRoleByName("admin");
       const adminUser2 = await usersService.findUserByEmailOr404(
-        "example@academlo.com"
+        "elioian2014@gmail.com"
       );
       const adminRole2 = await rolesService.findRoleByName("admin");
       const profiles = [
