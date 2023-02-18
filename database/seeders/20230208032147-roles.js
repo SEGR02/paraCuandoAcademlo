@@ -20,12 +20,6 @@ module.exports = {
             created_at: new Date(),
             updated_at: new Date(),
           },
-          {
-            id: "3",
-            name: "admin2",
-            created_at: new Date(),
-            updated_at: new Date(),
-          },
         ],
         { transaction }
       );
