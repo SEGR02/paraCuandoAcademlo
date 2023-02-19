@@ -6,7 +6,7 @@ class CustomError extends Error {
     this.status = statusCode;
 
     if (object && object.details) {
-      this.details = object.details
+      this.details = object.details;
     }
 
     Error.captureStackTrace(this, this.constructor);
@@ -14,7 +14,7 @@ class CustomError extends Error {
 }
 
 /* Pagination Utils */
-const getPagination = (page, size, defaultSize = '10') => {
+const getPagination = (page, size, defaultSize = "10") => {
   let pageStr = page;
   let sizeStr = size;
 
@@ -28,10 +28,10 @@ const getPagination = (page, size, defaultSize = '10') => {
 
   let offset;
   let limit = size ? +size : defaultSize;
-  if (page == '0' || page == '1') {
+  if (page == "0" || page == "1") {
     offset = 0;
   } else {
-    offset = page ? --page * limit : '0';
+    offset = page ? --page * limit : "0";
   }
 
   if (size) {
@@ -58,9 +58,8 @@ const getPagingData = (data, page, limit) => {
   return { count, totalPages, currentPage, results };
 };
 
-
 module.exports = {
   CustomError,
   getPagination,
-  getPagingData
+  getPagingData,
 };
