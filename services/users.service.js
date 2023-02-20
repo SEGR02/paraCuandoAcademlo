@@ -79,13 +79,29 @@ class UsersService {
   }
 
   async getAll() {
-    let user = await models.Users.findAll();
+    let user = await models.Users.findAll({
+      attributes: {
+        exclude: [
+          "password",
+          "token",
+          "email_verified",
+          "code_phone",
+          "phone",
+          "country_id",
+          "image_url",
+          "created_at",
+          "updated_at",
+        ],
+      },
+    });
     if (!user) throw new CustomError("Not found User", 404, "Not Found");
     return user;
   }
 
   async getUserOr404(id) {
-    let user = await models.Users.findByPk(id);
+    let user = await models.Users.findByPk(id, {
+      attributes: ["first_name", "last_name", "image_url"],
+    });
     if (!user) throw new CustomError("Not found User", 404, "Not Found");
     return user;
   }
