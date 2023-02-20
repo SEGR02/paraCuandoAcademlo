@@ -1,4 +1,5 @@
 const express = require("express");
+const authMiddleware = require("../middlewares/auth.middleware");
 const {
   getAllUsers,
   getUserById,
@@ -55,10 +56,42 @@ const router = express.Router();
  *                 message:
  *                   type: string
  *                   example: something wrong / error
+ * /api/v1/users/{userId}:
+ *   put:
+ *     summary: update user by id
+ *     parameters:
+ *       - in: path
+ *         name: userId
+ *     tags:
+ *       - Users
+ *     requestBody:
+ *       description: Update user by id
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schema/updateUserBody'
+ *     responses:
+ *       200:
+ *         description: OK
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schema/getUserById'
+ *       400:
+ *         description: Something wrong
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *                   example: something wrong / error
  */
 
-router.get("/", getAllUsers);
-router.get("/:id", getUserById);
-router.put("/:id", updateUser);
+router.get("/", authMiddleware, getAllUsers);
+router.get("/:id", authMiddleware, getUserById);
+router.put("/:id", authMiddleware, updateUser);
 
 module.exports = router;
