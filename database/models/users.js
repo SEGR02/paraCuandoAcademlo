@@ -7,7 +7,22 @@ module.exports = (sequelize, DataTypes) => {
         as: "country",
         foreignKey: "country_id",
       });
-      Users.hasMany(models.Profiles, { as: "profiles", foreignKey: "user_id" });
+      Users.hasMany(models.Profiles, {
+        as: "profiles",
+        foreignKey: "user_id",
+      });
+      Users.hasMany(models.Publications, {
+        as: "publication",
+        foreignKey: "publication_id",
+      });
+      Users.BelongsToMany(models.Publications, {
+        as: "publication",
+        foreignKey: "publication_id",
+      }); /*(A través de votes)*/
+      Users.BelongsToMany(models.Tags, {
+        as: "tags",
+        foreignKey: "tag_id",
+      }); /*(A través de user_tags) (Son los intereses)*/
     }
   }
 
@@ -203,6 +218,7 @@ module.exports = (sequelize, DataTypes) => {
       id: {
         type: DataTypes.UUID,
         primaryKey: true,
+        allowNull: false,
       },
       first_name: {
         type: DataTypes.STRING,

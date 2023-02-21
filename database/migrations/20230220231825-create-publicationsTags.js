@@ -5,7 +5,7 @@ module.exports = {
     const transaction = await queryInterface.sequelize.transaction();
     try {
       await queryInterface.createTable(
-        "states",
+        "publications_tags",
         {
           id: {
             allowNull: false,
@@ -13,16 +13,23 @@ module.exports = {
             primaryKey: true,
             type: Sequelize.INTEGER,
           },
-          name: {
-            type: Sequelize.STRING,
-            allowNull: false,
-          },
-          country_id: {
+          tag_id: {
             type: Sequelize.INTEGER,
             allowNull: false,
             foreignKey: true,
             references: {
-              model: "countries",
+              model: "tags",
+              key: "id",
+            },
+            onUpdate: "CASCADE",
+            onDelete: "RESTRICT",
+          },
+          publication_id: {
+            type: Sequelize.UUID,
+            allowNull: false,
+            foreignKey: true,
+            references: {
+              model: "publications",
               key: "id",
             },
             onUpdate: "CASCADE",
@@ -48,7 +55,7 @@ module.exports = {
   down: async (queryInterface /*Sequelize*/) => {
     const transaction = await queryInterface.sequelize.transaction();
     try {
-      await queryInterface.dropTable("states", { transaction });
+      await queryInterface.dropTable("publications_tags", { transaction });
       await transaction.commit();
     } catch (error) {
       await transaction.rollback();

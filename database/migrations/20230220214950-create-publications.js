@@ -5,28 +5,58 @@ module.exports = {
     const transaction = await queryInterface.sequelize.transaction();
     try {
       await queryInterface.createTable(
-        "states",
+        "publications",
         {
           id: {
             allowNull: false,
             autoIncrement: true,
             primaryKey: true,
-            type: Sequelize.INTEGER,
+            type: Sequelize.UUID,
           },
-          name: {
-            type: Sequelize.STRING,
-            allowNull: false,
-          },
-          country_id: {
-            type: Sequelize.INTEGER,
+          user_id: {
+            type: Sequelize.UUID,
             allowNull: false,
             foreignKey: true,
             references: {
-              model: "countries",
+              model: "users",
               key: "id",
             },
             onUpdate: "CASCADE",
             onDelete: "RESTRICT",
+          },
+          publication_type_id: {
+            type: Sequelize.INTEGER,
+            allowNull: false,
+            foreignKey: true,
+            references: {
+              model: "publication_types",
+              key: "id",
+            },
+            onUpdate: "CASCADE",
+            onDelete: "RESTRICT",
+          },
+          city_id: {
+            type: Sequelize.INTEGER,
+            allowNull: false,
+            foreignKey: true,
+            references: {
+              model: "cities",
+              key: "id",
+            },
+            onUpdate: "CASCADE",
+            onDelete: "RESTRICT",
+          },
+          title: {
+            type: Sequelize.STRING,
+            allowNull: false,
+          },
+          description: {
+            type: Sequelize.STRING,
+            allowNull: false,
+          },
+          content: {
+            type: Sequelize.TEXT,
+            allowNull: false,
           },
           created_at: {
             allowNull: false,
@@ -45,10 +75,10 @@ module.exports = {
       throw error;
     }
   },
-  down: async (queryInterface /*Sequelize*/) => {
+  down: async (queryInterface /* Sequelize*/) => {
     const transaction = await queryInterface.sequelize.transaction();
     try {
-      await queryInterface.dropTable("states", { transaction });
+      await queryInterface.dropTable("publications", { transaction });
       await transaction.commit();
     } catch (error) {
       await transaction.rollback();
