@@ -7,14 +7,9 @@ module.exports = {
       await queryInterface.createTable(
         "publicationsImages",
         {
-          id: {
-            allowNull: false,
-            autoIncrement: true,
-            primaryKey: true,
-            type: Sequelize.UUID,
-          },
           publication_id: {
             type: Sequelize.UUID,
+            allowNull: false,
             foreignKey: true,
             references: {
               model: "publications",
