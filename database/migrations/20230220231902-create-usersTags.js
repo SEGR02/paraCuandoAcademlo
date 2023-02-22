@@ -7,18 +7,12 @@ module.exports = {
       await queryInterface.createTable(
         "users_tags",
         {
-          id: {
-            allowNull: false,
-            autoIncrement: true,
-            primaryKey: true,
-            type: Sequelize.INTEGER,
-          },
           tag_id: {
             type: Sequelize.INTEGER,
-            allowNull: true,
+            allowNull: false,
             foreignKey: true,
             references: {
-              model: "countries",
+              model: "tags",
               key: "id",
             },
             onUpdate: "CASCADE",
@@ -26,10 +20,10 @@ module.exports = {
           },
           user_id: {
             type: Sequelize.UUID,
-            allowNull: true,
+            allowNull: false,
             foreignKey: true,
             references: {
-              model: "countries",
+              model: "users",
               key: "id",
             },
             onUpdate: "CASCADE",

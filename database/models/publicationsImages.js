@@ -11,11 +11,6 @@ module.exports = (sequelize, DataTypes) => {
   }
   PublicationsImages.init(
     {
-      id: {
-        type: DataTypes.INTEGER,
-        primaryKey: true,
-        allowNull: false,
-      },
       publication_id: {
         type: DataTypes.UUID,
         allowNull: false,
@@ -32,7 +27,7 @@ module.exports = (sequelize, DataTypes) => {
     {
       sequelize,
       modelName: "PublicationsImages",
-      tableName: "publications",
+      tableName: "publicationsImages",
       underscored: true,
       timestamps: true,
     }
