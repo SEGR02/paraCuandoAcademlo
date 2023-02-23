@@ -44,7 +44,7 @@ module.exports = {
   async down(queryInterface, Sequelize) {
     const transaction = await queryInterface.sequelize.transaction();
 
-    const userNames = ["sebastian.gomz02@gmail.com"];
+    const userNames = ["example@academlo.com"];
 
     try {
       await queryInterface.bulkDelete(
