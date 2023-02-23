@@ -1,7 +1,6 @@
 const express = require("express");
 const cors = require("cors");
 const helmet = require("helmet");
-const morgan = require("morgan");
 const swaggerDocs = require("./swagger");
 require("dotenv").config();
 
@@ -40,8 +39,6 @@ if (process.env.NODE_ENV === "production") {
 Accept Json & form-urlencoded
 */
 app.use(express.json());
-app.use(morgan("tiny"));
-app.use(cors());
 app.use(express.urlencoded({ extended: true }));
 
 /* 
@@ -58,7 +55,7 @@ app.get("/", ({ res }) => {
 Routes
 */
 routerModels(app);
-// routerErrorHandler(app);
+// routerErrorHandler(app)
 
 app.listen(PORT, () => {
   console.log(`Server on PORT: ${PORT}`);
