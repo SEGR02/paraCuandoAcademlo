@@ -15,11 +15,11 @@ module.exports = (sequelize, DataTypes) => {
         as: "publication",
         foreignKey: "publication_id",
       });
-      Users.BelongsToMany(models.Publications, {
+      Users.belongsToMany(models.Publications, {
         as: "publication",
         foreignKey: "publication_id",
       }); /*(A través de votes)*/
-      Users.BelongsToMany(models.Tags, {
+      Users.belongsToMany(models.Tags, {
         as: "tags",
         foreignKey: "tag_id",
       }); /*(A través de user_tags) (Son los intereses)*/
