@@ -8,7 +8,7 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: "user_id",
       });
       Publications.belongsTo(models.PublicationsTypes, {
-        as: "publications_types",
+        as: "publication_types",
         foreignKey: "publication_type_id",
       });
       Publications.belongsTo(models.Cities, {
@@ -19,11 +19,11 @@ module.exports = (sequelize, DataTypes) => {
         as: "publication_images",
         foreignKey: "publication_images_id",
       });
-      Publications.belongdToMany(models.Users, {
+      Publications.belongsToMany(models.Users, {
         as: "users",
         foreignKey: "users_id",
       }); /*(A través de votes)*/
-      Publications.belongdToMany(models.Tags, {
+      Publications.belongsToMany(models.Tags, {
         as: "tags",
         foreignKey: "tag_id",
       }); /*(A través de publications_tags)*/
