@@ -188,24 +188,6 @@ module.exports = (sequelize, DataTypes) => {
    *         updated_at:
    *           type: string
    *           example: 2023-02-19T06:04:22.638Z
-   *     updateUserBody:
-   *       type: object
-   *       properties:
-   *         first_name:
-   *           type: string
-   *           example: Sebas
-   *         last_name:
-   *           type: string
-   *           example: Gomez
-   *         code_phone:
-   *           type: string
-   *           example: 123789
-   *         phone:
-   *           type: string
-   *           example: +573333555415
-   *         image_url:
-   *           type: string
-   *           example: imageurl.com
    *   securitySchemes:
    *     bearerAuth:
    *       type: http

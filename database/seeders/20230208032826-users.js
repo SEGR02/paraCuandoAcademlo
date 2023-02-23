@@ -11,7 +11,7 @@ module.exports = {
     const usersSeeds = [
       {
         id: uuid.v4(),
-        first_name: "Elio",
+        first_name: "TEST",
         last_name: "TEST LN",
         email: "elioian2014@gmail.com",
         username: "elioian2014@gmail.com",
@@ -21,10 +21,10 @@ module.exports = {
       },
       {
         id: uuid.v4(),
-        first_name: "Sebastian",
-        last_name: "Gomez",
+        first_name: "TEST",
+        last_name: "TEST LN",
         email: "sebastian.gomz02@gmail.com",
-        username: "sebas02",
+        username: "sebastian.gomz02@gmail.com",
         password: hashPassword("12345678910"),
         created_at: new Date(),
         updated_at: new Date(),

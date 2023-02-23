@@ -99,15 +99,11 @@ class UsersService {
   }
 
   async getUserOr404(id) {
-    try {
-      let user = await models.Users.findByPk(id, {
-        attributes: ["first_name", "last_name", "image_url"],
-      });
-      if (!user) throw new CustomError("Not found User", 404, "Not Found");
-      return user;
-    } catch (error) {
-      throw error;
-    }
+    let user = await models.Users.findByPk(id, {
+      attributes: ["first_name", "last_name", "image_url"],
+    });
+    if (!user) throw new CustomError("Not found User", 404, "Not Found");
+    return user;
   }
 
   async findUserByEmailOr404(email) {
