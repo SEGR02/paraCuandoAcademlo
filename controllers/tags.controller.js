@@ -4,7 +4,7 @@ const { getPagination, getPagingData } = require("../utils/helpers");
 const tagsService = new TagsService();
 
 const getAllTags = async (request, response, next) => {
-  if (request.token.id == id) {
+  if (request.isAdmin || request.token) {
     try {
       let query = request.query;
       let { page, size } = query;
@@ -13,7 +13,7 @@ const getAllTags = async (request, response, next) => {
       query.limit = limit;
       query.offset = offset;
 
-      let tags = await tagsService.getAll();
+      let tags = await tagsService.getAllTags();
       const results = getPagingData(tags, page, limit);
       return response.json({ results: tags });
     } catch (error) {

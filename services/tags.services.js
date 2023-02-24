@@ -46,8 +46,8 @@ class TagsService {
 
   async getAllTags() {
     try {
-      const tag = await models.tags.findAll();
-      if (!user) throw new CustomError("Not found User", 404, "Not Found");
+      const tag = await models.Tags.findAll();
+      // if (!user) throw new CustomError("Not found User", 404, "Not Found");
       return tag;
     } catch (error) {
       throw error;
