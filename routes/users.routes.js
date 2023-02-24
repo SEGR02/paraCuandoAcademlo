@@ -58,8 +58,8 @@ const router = express.Router();
  *                   example: something wrong / error
  */
 
-router.get("/", getAllUsers);
-router.get("/:id", getUserById);
-router.put("/:id", updateUser);
+router.get("/", authMiddleware, getAllUsers);
+router.get("/:id", authMiddleware, getUserById);
+router.put("/:id", authMiddleware, updateUser);
 
 module.exports = router;

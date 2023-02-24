@@ -1,19 +1,19 @@
 "use strict";
 const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
-  class Cities extends Model {
+  class Tags extends Model {
     static associate(models) {
-      Cities.belongsTo(models.States, {
-        as: "states",
-        foreignKey: "state_id",
+      Tags.hasMany(models.PublicationsTags, {
+        as: "publicationTags",
+        foreignKey: "tag_id",
       });
-      Cities.hasMany(models.Publications, {
-        as: "publications",
-        foreignKey: "city_id",
+      Tags.hasMany(models.UsersTags, {
+        as: "usersTags",
+        foreignKey: "tag_id",
       });
     }
   }
-  Cities.init(
+  Tags.init(
     {
       id: {
         type: DataTypes.INTEGER,
@@ -24,18 +24,22 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING,
         allowNull: false,
       },
-      state_id: {
-        type: DataTypes.INTEGER,
+      description: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
+      image_url: {
+        type: DataTypes.STRING,
         allowNull: false,
       },
     },
     {
       sequelize,
-      modelName: "Cities",
-      tableName: "cities",
+      modelName: "Tags",
+      tableName: "tags",
       underscored: true,
       timestamps: true,
     }
   );
-  return Cities;
+  return Tags;
 };

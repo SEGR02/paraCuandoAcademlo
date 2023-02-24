@@ -7,7 +7,7 @@ module.exports = (sequelize, DataTypes) => {
         as: "users",
         foreignKey: "country_id",
       });
-      Countries.hasOne(models.states, {
+      Countries.hasMany(models.States, {
         as: "states",
         foreignKey: "country_id",
       });

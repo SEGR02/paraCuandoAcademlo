@@ -1,36 +1,36 @@
 "use strict";
 const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
-  class Votes extends Model {
+  class PublicationsImages extends Model {
     static associate(models) {
-      Votes.belongsTo(models.Publications, {
+      PublicationsImages.belongsTo(models.Publications, {
         as: "publication",
         foreignKey: "publication_id",
       });
-      Votes.belongsTo(models.Users, {
-        as: "users",
-        foreignKey: "user_id",
-      });
     }
   }
-  Votes.init(
+  PublicationsImages.init(
     {
       publication_id: {
         type: DataTypes.UUID,
         allowNull: false,
       },
-      user_id: {
-        type: DataTypes.UUID,
+      image_url: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
+      order: {
+        type: DataTypes.INTEGER,
         allowNull: false,
       },
     },
     {
       sequelize,
-      modelName: "Votes",
-      tableName: "votes",
+      modelName: "PublicationsImages",
+      tableName: "publicationImages",
       underscored: true,
       timestamps: true,
     }
   );
-  return Votes;
+  return PublicationsImages;
 };
