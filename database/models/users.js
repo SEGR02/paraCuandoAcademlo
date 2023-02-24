@@ -11,19 +11,18 @@ module.exports = (sequelize, DataTypes) => {
         as: "profiles",
         foreignKey: "user_id",
       });
-
-      // Users.hasMany(models.Publications, {
-      //   as: "publication",
-      //   foreignKey: "publication_id",
-      // });
-      // Users.belongsToMany(models.Publications, {
-      //   as: "publication",
-      //   foreignKey: "publication_id",
-      // }); /*(A través de votes)*/
-      // Users.belongsToMany(models.Tags, {
-      //   as: "tags",
-      //   foreignKey: "tag_id",
-      // }); /*(A través de user_tags) (Son los intereses)*/
+      Users.hasMany(models.Publications, {
+        as: "publication",
+        foreignKey: "publication_id",
+      });
+      Users.hasMany(models.Votes, {
+        as: "votes",
+        foreignKey: "user_id",
+      });
+      Users.hasMany(models.UsersTags, {
+        as: "usersTags",
+        foreignKey: "user_id",
+      });
     }
   }
 
