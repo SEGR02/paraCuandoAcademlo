@@ -54,13 +54,10 @@ class TagsService {
     }
   }
 
-  async addTags({ name, description, image_url }) {
+  async create(newTag) {
     const transaction = await models.sequelize.transaction();
     try {
-      const newTag = await models.Tags.create(
-        { name, description, image_url },
-        { transaction }
-      );
+      const tag = await models.Tags.create(tag, { transaction });
       await transaction.commit();
       return newTag;
     } catch (error) {
