@@ -2,19 +2,18 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable("states", {
+    await queryInterface.createTable("cities", {
       id: {
-        allowNull: false,
-        // autoIncrement: true,
-        primaryKey: true,
         type: Sequelize.UUID,
+        primaryKey: true,
+        allowNull: false,
         default: Sequelize.fn("uuid_generate_v4"),
       },
-      country_id: {
-        type: Sequelize.INTEGER,
+      state_id: {
+        type: Sequelize.UUID,
         foreignKey: true,
         references: {
-          model: "countries",
+          model: "states",
           key: "id",
         },
         onUpdate: "CASCADE",
@@ -34,6 +33,6 @@ module.exports = {
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable("states");
+    await queryInterface.dropTable("cities");
   },
 };
