@@ -55,7 +55,7 @@ app.get("/", ({ res }) => {
 Routes
 */
 routerModels(app);
-// routerErrorHandler(app)
+// routerErrorHandler(app);
 
 app.listen(PORT, () => {
   console.log(`Server on PORT: ${PORT}`);
