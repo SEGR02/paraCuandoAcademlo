@@ -10,7 +10,7 @@ module.exports = {
         default: Sequelize.fn("uuid_generate_v4"),
       },
       state_id: {
-        type: Sequelize.UUID,
+        type: Sequelize.INTEGER,
         foreignKey: true,
         references: {
           model: "states",

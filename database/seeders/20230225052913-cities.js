@@ -1,27 +1,24 @@
-//Seeder creado
-
-//noten que es igual a una migración!
-
 "use strict";
+const uuid = require("uuid");
 const { Op } = require("sequelize");
+const { hashPassword } = require("../../libs/bcrypt");
 
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
-  async up(queryInterface /*Sequelize*/) {
+  async up(queryInterface, Sequelize) {
     const transaction = await queryInterface.sequelize.transaction();
+
+    const citiesSeeds = [
+      {
+        id: 1,
+        name: "San Martin",
+        state_id: 1,
+        created_at: new Date(),
+        updated_at: new Date(),
+      },
+    ];
     try {
-      await queryInterface.bulkInsert(
-        "countries",
-        [
-          {
-            id: 1,
-            name: "Argentina",
-            created_at: new Date(),
-            updated_at: new Date(),
-          },
-        ],
-        { transaction }
-      );
+      await queryInterface.bulkInsert("cities", citiesSeeds, { transaction });
 
       await transaction.commit();
     } catch (error) {
@@ -30,18 +27,22 @@ module.exports = {
     }
   },
 
-  async down(queryInterface /*Sequelize*/) {
+  async down(queryInterface, Sequelize) {
     const transaction = await queryInterface.sequelize.transaction();
     try {
       await queryInterface.bulkDelete(
-        "countries",
+        "cities",
         {
           name: {
-            [Op.or]: ["Argentina"],
+            [Op.or]: name,
+          },
+          state_id: {
+            [Op.or]: state_id,
           },
         },
         { transaction }
       );
+
       await transaction.commit();
     } catch (error) {
       await transaction.rollback();
