@@ -28,7 +28,7 @@ module.exports = {
             allowNull: false,
             foreignKey: true,
             references: {
-              model: "publication_types",
+              model: "publicationtypes",
               key: "id",
             },
             onUpdate: "CASCADE",
