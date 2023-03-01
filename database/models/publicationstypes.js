@@ -31,6 +31,11 @@ module.exports = (sequelize, DataTypes) => {
       tableName: "publicationtypes",
       underscored: true,
       timestamps: true,
+      scopes: {
+        view_public: {
+          attributes: ["id", "name", "description"],
+        },
+      },
     }
   );
   return publicationstypes;

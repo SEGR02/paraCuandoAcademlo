@@ -1,8 +1,7 @@
 const express = require("express");
 const routesUsers = require("./users.routes");
 const routesTags = require("./tags.routes");
-const routerPublicationsTypes = require("./publications.types.router");
-
+const routesPublicationsTypes = require("./publications.types.router");
 // const isAuthenticatedByPassportJwt = require('../libs/passport')
 
 const routesAuth = require("./auth.routes");
@@ -14,7 +13,7 @@ function routerModels(app) {
   router.use("/auth", routesAuth);
   router.use("/users", routesUsers);
   router.use("/tags", routesTags);
-  router.use("/publicationsTypes", routerPublicationsTypes);
+  router.use("/publicationsTypes", routesPublicationsTypes);
 }
 
 module.exports = routerModels;
