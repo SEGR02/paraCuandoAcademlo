@@ -1,15 +1,15 @@
 "use strict";
 const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
-  class PublicationsTypes extends Model {
+  class publicationstypes extends Model {
     static associate(models) {
-      PublicationsTypes.hasMany(models.Publications, {
+      publicationstypes.hasMany(models.Publications, {
         as: "publication",
         foreignKey: "publication_type_id",
       });
     }
   }
-  PublicationsTypes.init(
+  publicationstypes.init(
     {
       id: {
         type: DataTypes.INTEGER,
@@ -27,11 +27,11 @@ module.exports = (sequelize, DataTypes) => {
     },
     {
       sequelize,
-      modelName: "PublicationsTypes",
-      tableName: "publicationTypes",
+      modelName: "publicationstypes",
+      tableName: "publicationtypes",
       underscored: true,
       timestamps: true,
     }
   );
-  return PublicationsTypes;
+  return publicationstypes;
 };

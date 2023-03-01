@@ -13,9 +13,9 @@ const getAllUsers = async (request, response, next) => {
       query.limit = limit;
       query.offset = offset;
 
-      let users = await usersService.getAll();
+      let users = await usersService.findAndCount(query);
       const results = getPagingData(users, page, limit);
-      return response.json({ results: users });
+      return response.json(results);
     } catch (error) {
       next(error);
     }
@@ -31,7 +31,7 @@ const getUserById = async (request, response, next) => {
   if (request.isAdmin == true || request.token.id == id) {
     try {
       const users = await usersService.getUserOr404(id);
-      return response.json({ results: users });
+      return response.json(users);
     } catch (error) {
       next(error);
     }
