@@ -78,22 +78,42 @@ class UsersService {
     return user;
   }
 
-  async getAll() {
-    let user = await models.Users.findAll({
-      attributes: {
-        exclude: [
-          "password",
-          "token",
-          "email_verified",
-          "code_phone",
-          "phone",
-          "country_id",
-          "image_url",
-          "created_at",
-          "updated_at",
-        ],
-      },
-    });
+  async getAll(query) {
+    const options = {
+      where: {},
+    };
+
+    const { limit, offset } = query;
+    if (limit && offset) {
+      options.limit = limit;
+      options.offset = offset;
+    }
+
+    const { id } = query;
+    if (id) {
+      options.where.id = id;
+    }
+
+    const { name } = query;
+    if (name) {
+      options.where.name = { [Op.iLike]: `%${name}%` };
+    }
+    let user = await models.Users.findAll(options);
+    // let user = await models.Users.findAll({
+    //   attributes: {
+    //     exclude: [
+    //       "password",
+    //       "token",
+    //       "email_verified",
+    //       "code_phone",
+    //       "phone",
+    //       "country_id",
+    //       "image_url",
+    //       "created_at",
+    //       "updated_at",
+    //     ],
+    //   },
+    // });
     if (!user) throw new CustomError("Not found User", 404, "Not Found");
     return user;
   }

@@ -7,7 +7,7 @@ module.exports = (sequelize, DataTypes) => {
         as: "users",
         foreignKey: "user_id",
       });
-      Publications.belongsTo(models.publicationtypes, {
+      Publications.belongsTo(models.publicationstypes, {
         as: "publicationtypes",
         foreignKey: "publication_id",
       });
