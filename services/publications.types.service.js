@@ -1,7 +1,7 @@
 const models = require("../database/models");
 
 class PublicationsTypesServices {
-  constructor() {}
+  constructor() {} // prueba git
 
   static async findAndCount(query) {
     const options = {
