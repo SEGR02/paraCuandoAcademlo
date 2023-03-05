@@ -57,7 +57,7 @@ const router = express.Router();
  *                   type: string
  *                   example: something wrong / error
  *   put:
- *     summary: post user by id
+ *     summary: Update user by id
  *     parameters:
  *       - in: path
  *         name: id
