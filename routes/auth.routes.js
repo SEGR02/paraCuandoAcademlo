@@ -38,11 +38,7 @@ const {
  *         content:
  *           application/json:
  *             schema:
- *               type: object
- *               properties:
- *                 results:
- *                   type: string
- *                   example: Success Sign Up
+ *               $ref: "#/components/schemas/sign-upResponse"
  *       400:
  *         description: Validation error
  *         content:

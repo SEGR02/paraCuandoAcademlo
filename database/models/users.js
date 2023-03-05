@@ -45,6 +45,23 @@ module.exports = (sequelize, DataTypes) => {
    *         password:
    *           type: string
    *           example: 12345678910
+   *     sign-upResponse:
+   *       type: object
+   *       properties:
+   *         results:
+   *           type: string
+   *           example: "Success Sign Up"
+   *         errors:
+   *          type: array
+   *          items:
+   *            type: object
+   *            properties:
+   *              errorName:
+   *                type: string
+   *                example: ""
+   *              message:
+   *                type: string
+   *                example: ""
    *     login:
    *       type: object
    *       properties:
