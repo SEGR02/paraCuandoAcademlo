@@ -42,9 +42,9 @@ const addTags = async (request, response, next) => {
 
 const getTagById = async (request, response, next) => {
   const { id } = request.params;
-  if (request.token.id == id) {
+  if (request.isAdmin == true) {
     try {
-      const tag = await tagsService.getTag(id);
+      const tag = await tagsService.getTagById(id);
       return response.json({ results: tag });
     } catch (error) {
       next(error);

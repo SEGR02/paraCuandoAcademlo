@@ -25,10 +25,10 @@ const getAllPublicationsTypes = async (req, res, next) => {
 
 const getAllPublicationsId = async (req, res, next) => {
   const { id } = req.params;
-  if (request.isAdmin == true || request.token.id == id) {
+  if (req.isAdmin || req.token) {
     try {
-      const result = await publicationsTypesService.getPublication(id);
-      return response.json(result);
+      const result = await publicationsTypesService.getPublicationsTypeById(id);
+      return res.json(result);
     } catch (error) {
       next(error);
     }
