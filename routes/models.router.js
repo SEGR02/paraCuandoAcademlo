@@ -5,6 +5,7 @@ const routesCountries = require("./countries.routes");
 const routesStates = require("./states.routes");
 const routesCities = require("./cities.routes");
 const routesRoles = require("./roles.routes");
+const routesPublicationsTypes = require("./publications.types.router");
 // const isAuthenticatedByPassportJwt = require('../libs/passport')
 
 const routesAuth = require("./auth.routes");
@@ -20,6 +21,7 @@ function routerModels(app) {
   router.use("/states", routesStates);
   router.use("/cities", routesCities);
   router.use("/roles", routesRoles);
+  router.use("/publications_types", routesPublicationsTypes);
 }
 
 module.exports = routerModels;

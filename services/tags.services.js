@@ -28,14 +28,6 @@ class TagsService {
     if (name) {
       options.where.name = { [Op.iLike]: `%${name}%` };
     }
-    const { description } = query;
-    if (description) {
-      options.where.description = { [Op.iLike]: `%${description}%` };
-    }
-    const { image_url } = query;
-    if (image_url) {
-      options.where.image_url = { [Op.iLike]: `%${image_url}%` };
-    }
 
     //Necesario para el findAndCountAll de Sequelize
     options.distinct = true;
@@ -44,10 +36,29 @@ class TagsService {
     return tags;
   }
 
-  async getAllTags() {
+  async getAllTags(query) {
+    const options = {
+      where: {},
+    };
+
+    const { limit, offset } = query;
+    if (limit && offset) {
+      options.limit = limit;
+      options.offset = offset;
+    }
+
+    const { id } = query;
+    if (id) {
+      options.where.id = id;
+    }
+
+    const { name } = query;
+    if (name) {
+      options.where.name = { [Op.iLike]: `%${name}%` };
+    }
     try {
-      const tag = await models.Tags.findAll();
-      // if (!user) throw new CustomError("Not found User", 404, "Not Found");
+      const tag = await models.Tags.findAll(options);
+      if (!user) throw new CustomError("Not found User", 404, "Not Found");
       return tag;
     } catch (error) {
       throw error;

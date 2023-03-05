@@ -31,7 +31,7 @@ const {
  *       content:
  *         application/json:
  *           schema:
- *             $ref: '#/components/schema/sign-up'
+ *             $ref: '#/components/schemas/sign-up'
  *     responses:
  *       201:
  *         description: Created
@@ -64,14 +64,14 @@ const {
  *       content:
  *         application/json:
  *           schema:
- *             $ref: '#/components/schema/login'
+ *             $ref: '#/components/schemas/login'
  *     responses:
  *       200:
  *         description: logged
  *         content:
  *           application/json:
  *             schema:
- *               $ref: '#/components/schema/loginResponse'
+ *               $ref: '#/components/schemas/loginResponse'
  *       400:
  *         description: Validation error
  *         content:
@@ -93,14 +93,14 @@ const {
  *       content:
  *         application/json:
  *           schema:
- *             $ref: '#/components/schema/restorePassword'
+ *             $ref: '#/components/schemas/restorePassword'
  *     responses:
  *       200:
  *         description: OK
  *         content:
  *           application/json:
  *             schema:
- *               $ref: '#/components/schema/restorePasswordResponse'
+ *               $ref: '#/components/schemas/restorePasswordResponse'
  *       400:
  *         description: Validation error
  *         content:
@@ -125,14 +125,14 @@ const {
  *       content:
  *         application/json:
  *           schema:
- *             $ref: '#/components/schema/restorePasswordBody'
+ *             $ref: '#/components/schemas/restorePasswordBody'
  *     responses:
  *       200:
  *         description: OK
  *         content:
  *           application/json:
  *             schema:
- *               $ref: '#/components/schema/restorePasswordFinishResponse'
+ *               $ref: '#/components/schemas/restorePasswordFinishResponse'
  *       400:
  *         description: Something wrong
  *         content:

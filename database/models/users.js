@@ -29,7 +29,7 @@ module.exports = (sequelize, DataTypes) => {
   /**
    * @openapi
    * components:
-   *   schema:
+   *   schemas:
    *     sign-up:
    *       type: object
    *       properties:
@@ -144,6 +144,51 @@ module.exports = (sequelize, DataTypes) => {
    *                 type: string
    *                 example: 2023-02-19T06:04:22.638Z
    *     getUserById:
+   *       type: object
+   *       properties:
+   *         id:
+   *           type: string
+   *           example: 8az3c08f-fop7-47df-84b6-25604626e6a3
+   *         first_name:
+   *           type: string
+   *           example: Ian
+   *         last_name:
+   *           type: string
+   *           example: Rosas
+   *         email:
+   *           type: string
+   *           example: ian@gmail.com
+   *         username:
+   *           type: string
+   *           example: Iannacus
+   *         password:
+   *           type: string
+   *           example: 12345678910
+   *         email_verified:
+   *           type: string
+   *           example: date
+   *         token:
+   *           type: string
+   *           example: acKhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Ijk3MmY4NDAyLTBhZTEtNDlhNy1iZWU3LTQzNjY5ZDRlYWMzOSIsImVtYWlsIjoiZWxwZXJyaXRvODVAb3V0bG9vay5lcyIsImlhdCI6MTY3Njc4NjczMCwiZXhwIjoxNjc2Nzg3NjMwfQ.gYV2Wjnxs3tYR23lw-30C2IUAKyu6_skA2Ld4J3k3FA
+   *         code_phone:
+   *           type: string
+   *           example: 123789
+   *         phone:
+   *           type: string
+   *           example: +57222265415485
+   *         country_id:
+   *           type: int
+   *           example: 2
+   *         image_url:
+   *           type: string
+   *           example: imageurl2.com
+   *         created_at:
+   *           type: string
+   *           example: 2023-02-19T06:04:11.638Z
+   *         updated_at:
+   *           type: string
+   *           example: 2023-02-19T06:04:22.638Z
+   *     updateUser:
    *       type: object
    *       properties:
    *         id:

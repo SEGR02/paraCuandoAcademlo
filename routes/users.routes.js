@@ -20,7 +20,7 @@ const router = express.Router();
  *         content:
  *           application/json:
  *             schema:
- *               $ref: '#/components/schema/getAllUsersResponse'
+ *               $ref: '#/components/schemas/getAllUsersResponse'
  *       400:
  *         description: Validation error
  *         content:
@@ -45,7 +45,31 @@ const router = express.Router();
  *         content:
  *           application/json:
  *             schema:
- *               $ref: '#/components/schema/getUserById'
+ *               $ref: '#/components/schemas/getUserById'
+ *       400:
+ *         description: Something wrong
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *                   example: something wrong / error
+ *   put:
+ *     summary: post user by id
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *     tags:
+ *       - Users
+ *     responses:
+ *       200:
+ *         description: OK
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/updateUser'
  *       400:
  *         description: Something wrong
  *         content:

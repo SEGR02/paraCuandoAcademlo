@@ -1,9 +1,9 @@
 const models = require("../database/models");
 
-class PublicationsTypesServices {
+class PublicationsTypesService {
   constructor() {} // prueba git
 
-  static async findAndCount(query) {
+  async findAndCount(query) {
     const options = {
       where: {},
     };
@@ -32,15 +32,35 @@ class PublicationsTypesServices {
     );
     return publicationstype;
   }
+  async getAllPublicationsTypes(query) {
+    const options = {
+      where: {},
+    };
 
-  static async getAllPublicationsTypes() {
+    const { limit, offset } = query;
+    if (limit && offset) {
+      options.limit = limit;
+      options.offset = offset;
+    }
+
+    const { id } = query;
+    if (id) {
+      options.where.id = id;
+    }
+
+    const { name } = query;
+    if (name) {
+      options.where.name = { [Op.iLike]: `%${name}%` };
+    }
     try {
-      const result = await models.publicationstypes.findAll();
+      const result = await models.publicationsTypes.findAll(options);
       return result;
     } catch (error) {
       throw error;
     }
   }
+
+  async;
 }
 
-module.exports = PublicationsTypesServices;
+module.exports = PublicationsTypesService;

@@ -1,6 +1,8 @@
 const db = require("../database/models");
-const PublicationsTypesServices = require("../services/publications.types.service");
+const PublicationsTypesService = require("../services/publications.types.service");
 const { getPagination, getPagingData } = require("../utils/helpers");
+
+const publicationsTypesService = new PublicationsTypesService();
 
 const getAllPublicationsTypes = async (req, res, next) => {
   if (req.isAdmin || req.token) {
@@ -12,21 +14,28 @@ const getAllPublicationsTypes = async (req, res, next) => {
       query.limit = limit;
       query.offset = offset;
 
-      const result = await PublicationsTypesServices.findAndCount(query);
+      const result = await publicationsTypesService.findAndCount(query);
       const pagination = getPagingData(result, page, limit);
-      if (result) res.json(pagination);
+      return res.json(pagination);
     } catch (error) {
-      res.status(400).json(error);
-      console.log(error);
+      next(error);
     }
   }
 };
 
 const getAllPublicationsId = async (req, res, next) => {
-  try {
-  } catch (error) {
-    res.status(400).json(error);
-    console.log(error);
+  const { id } = req.params;
+  if (request.isAdmin == true || request.token.id == id) {
+    try {
+      const result = await publicationsTypesService.getPublication(id);
+      return response.json(result);
+    } catch (error) {
+      next(error);
+    }
+  } else {
+    res
+      .status(401)
+      .json({ message: "Unauthorized option only for admin or the same user" });
   }
 };
-module.exports = { getAllPublicationsTypes };
+module.exports = { getAllPublicationsTypes, getAllPublicationsId };

@@ -13,9 +13,9 @@ const getAllStates = async (request, response, next) => {
       query.limit = limit;
       query.offset = offset;
 
-      let state = await statesService.getAll();
+      let state = await statesService.findAndCount(query);
       const results = getPagingData(state, page, limit);
-      return response.json({ results: state });
+      return response.json(results);
     } catch (error) {
       next(error);
     }
