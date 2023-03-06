@@ -40,15 +40,11 @@ const {
  *             schema:
  *               $ref: "#/components/schemas/sign-upResponse"
  *       400:
- *         description: Validation error
+ *         description: Bad request
  *         content:
  *           application/json:
  *             schema:
- *               type: object
- *               properties:
- *                 message:
- *                   type: string
- *                   example: Validation error
+ *               $ref: "#/components/schemas/sign-upBadResponse"
  * /api/v1/auth/login:
  *   post:
  *     summary: login user into aplication
@@ -68,8 +64,8 @@ const {
  *           application/json:
  *             schema:
  *               $ref: '#/components/schemas/loginResponse'
- *       400:
- *         description: Validation error
+ *       401:
+ *         description: Unauthorized
  *         content:
  *           application/json:
  *             schema:
@@ -77,7 +73,41 @@ const {
  *               properties:
  *                 message:
  *                   type: string
- *                   example: incorrect password / incorrect email / something wrong
+ *                   example: Wrong credentials
+ *       404:
+ *         description: Not Found
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *                   example: Not found user
+ * /api/v1/auth/me:
+ *   get:
+ *     summary: Get profile
+ *     security:
+ *       - BearerAuth: [admin]
+ *     tags:
+ *       - Auth
+ *     responses:
+ *       200:
+ *         description: OK
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/authMeResponse'
+ *       401:
+ *         description: Unauthorized
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *                   example: Unauthorized
  * /api/v1/auth/forget-password:
  *   post:
  *     summary: restore password
@@ -98,7 +128,7 @@ const {
  *             schema:
  *               $ref: '#/components/schemas/restorePasswordResponse'
  *       400:
- *         description: Validation error
+ *         description: Bad request
  *         content:
  *           application/json:
  *             schema:
@@ -106,7 +136,17 @@ const {
  *               properties:
  *                 message:
  *                   type: string
- *                   example: incorrect password / incorrect email / something wrong
+ *                   example: Bad request
+ *       404:
+ *         description: Not Found
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *                   example: Not found user
  * /api/v1/auth/change-password/{token}:
  *   post:
  *     summary: Restore forget password
@@ -130,7 +170,7 @@ const {
  *             schema:
  *               $ref: '#/components/schemas/restorePasswordFinishResponse'
  *       400:
- *         description: Something wrong
+ *         description: Bad request
  *         content:
  *           application/json:
  *             schema:
@@ -138,7 +178,17 @@ const {
  *               properties:
  *                 message:
  *                   type: string
- *                   example: something wrong / error
+ *                   example: Bad request
+ *       404:
+ *         description: Not Found
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *                   example: Not found user
  */
 
 router.post("/login", logIn);

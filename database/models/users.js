@@ -62,6 +62,23 @@ module.exports = (sequelize, DataTypes) => {
    *              message:
    *                type: string
    *                example: ""
+   *     sign-upBadResponse:
+   *       type: object
+   *       properties:
+   *         results:
+   *           type: string
+   *           example: "Bad Sign Up"
+   *         errors:
+   *          type: array
+   *          items:
+   *            type: object
+   *            properties:
+   *              errorName:
+   *                type: string
+   *                example: "Error Sending Email"
+   *              message:
+   *                type: string
+   *                example: "Something went wrong with the Sender Email"
    *     login:
    *       type: object
    *       properties:
@@ -94,7 +111,7 @@ module.exports = (sequelize, DataTypes) => {
    *           properties:
    *             message:
    *               type: string
-   *               example: Email sended!, check your inbox
+   *               example: Email sent!, check your inbox
    *     restorePasswordBody:
    *       type: object
    *       properties:
@@ -250,8 +267,52 @@ module.exports = (sequelize, DataTypes) => {
    *         updated_at:
    *           type: string
    *           example: 2023-02-19T06:04:22.638Z
+   *     authMeResponse:
+   *       type: object
+   *       properties:
+   *         results:
+   *           type: object
+   *           properties:
+   *             id:
+   *               type: string
+   *               example: e8cab3da-c5e0-4ff2-a833-727b71534961
+   *             first_name:
+   *               type: string
+   *               example: Ian
+   *             last_name:
+   *               type: string
+   *               example: Rosas
+   *             email:
+   *               type: string
+   *               example: ian@gmail.com
+   *             username:
+   *               type: string
+   *               example: Iannacus
+   *             image_url:
+   *               type: string
+   *               example: imageurl.com
+   *             email_verified:
+   *               type: array
+   *               items:
+   *                 type: object
+   *                 properties:
+   *                   id:
+   *                     type: string
+   *                     example: 1
+   *                   user_id:
+   *                     type: string
+   *                     example: e8cab3da-c5e0-4ff2-a811-818b71534619
+   *                   role_id:
+   *                     type: int
+   *                     example: 1
+   *                   created_at:
+   *                     type: string
+   *                     example: 2023-03-05T21:02:41.849Z
+   *                   updated_at:
+   *                     type: string
+   *                     example: 2023-03-05T21:07:59.849Z
    *   securitySchemes:
-   *     bearerAuth:
+   *     BearerAuth:
    *       type: http
    *       scheme: bearer
    *       bearerFormat: JWT
